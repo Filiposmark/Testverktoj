@@ -1,0 +1,37 @@
+.grey-bg {
+    background-color: #e9ecef;
+}
+
+/* Profile styling */
+.profile-card {
+    margin: 0 2rem 2rem;
+    border-radius: 10px;
+}
+
+.badge-lg {
+    font-size: 16px;
+}
+
+td > .badge {
+    font-size: 12px;
+    padding: .6em 1em;
+}
+
+.badge-container > .badge {
+    padding: .6em 1em;
+    margin-bottom: 10px;
+}
+
+.badge-hover:hover {
+    cursor: pointer;
+}
+
+.badge-hover.badge-primary:hover {
+    background-color: #0056b2;
+}
+
+.jumbotron {
+    /* Override standard padding and margin */
+    padding: 4rem 2rem .5rem;
+    margin-bottom: .5rem;
+}
