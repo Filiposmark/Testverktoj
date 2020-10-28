@@ -4,7 +4,7 @@
 
 /* Profile styling */
 .profile-card {
-    margin: 0 2rem 2rem;
+    margin: 0 2rem 2rem;    /* rem is a size related to the "main" font size of the document */
     border-radius: 10px;
 }
 
@@ -14,12 +14,12 @@
 
 td > .badge {
     font-size: 12px;
-    padding: .6em 1em;
+    padding: .6em 1em;      /* em is a size related to the font size of the element */
 }
 
 .badge-container > .badge {
     padding: .6em 1em;
-    margin-bottom: 10px;
+    margin-bottom: 10px;    /* Pushing other elements below */
 }
 
 .badge-hover:hover {
@@ -34,4 +34,20 @@ td > .badge {
     /* Override standard padding and margin */
     padding: 4rem 2rem .5rem;
     margin-bottom: .5rem;
+}
+
+.logout-header {
+    display: inline-block;
+    float: right;
+    position: relative;     /* Top, bottom, left, right specifies "offset" relative to original position */
+    top: -50px;
+}
+
+@media (max-width: 1100px) {
+    .logout-header {
+        display: block;
+        position: absolute;     /* Absolute means regardless of other elements */
+        top: 10px;
+        right: 15px;
+    }
 }

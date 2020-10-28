@@ -26,6 +26,7 @@ sec_session_start();
             <div class="jumbotron">
                 <h1 class="display-4">Hej, <?php echo $_SESSION["name"]; ?>!</h1>
                 <p class="lead">Herunder kan du se alle dine tests - gennemførste og kommende. Du kan også se dit fremskridt i hvert fag.</p>
+                <a href="includes/logout.php" class="btn btn-light logout-header" style="display: inline-block;">Log ud</a>
                 <hr class="my-4">
             </div>
         </div>
