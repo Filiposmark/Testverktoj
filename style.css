@@ -1,0 +1,177 @@
+
+.maintit {
+    
+    color: #fff;
+    font-weight: 100;
+    position: relative;
+}
+
+
+#logincard {
+  
+    position: absolute;
+    background-color: #4a4e4d;
+    color: #f4f4f8;
+    
+}
+
+#cardbtn {
+    background-color:  #f4f4f8;
+    color: #4a4e4d;
+    border: 1px solid #f4f4f8;
+}
+
+#tithr.new4 {
+    border: 1px solid #f4f4f8;
+    background-color: #f4f4f8;
+    border-radius: 20%;
+}
+
+hr.new4 {
+    background-color: #f4f4f8;
+    width:100%;
+}
+
+#landing {
+   
+    min-height: 800px;
+    padding: 100px;
+    margin: auto;
+    background-color: #318CE7;
+    
+}
+
+.cent {
+    text-align: center;
+}
+
+
+
+#landing2 {
+    margin: auto;
+    min-height: 400px;
+    padding: 100px;
+    background-color: antiquewhite;
+}
+
+#logo {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+#end {
+    min-height: 300px;
+    background-color: #656565;
+    padding: 30px;
+    
+}
+
+
+#byline {
+    text-align: right;
+}
+
+
+/*SIGN IN MODAL*/
+#signinup {
+    color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 800px;
+    
+}
+
+#intro {
+    text-align: center;
+    border-top: 3px rgb(61, 33, 33);
+    color: black;
+}
+
+#signupbtn {
+    background-color: #f5f5f5;
+    color: black;
+    border-color: black;
+    
+}
+
+#signupbtn:hover {
+    transition-duration: 0.2s;
+    border-color: #f5f5f5;
+    background-color: rgb(0, 0, 0);
+    color: #f5f5f5;
+}
+
+#loginbtn {
+    background-color: #f5f5f5;
+    color: black;
+    border-color: black;
+    
+}
+
+#loginbtn:hover {
+    transition-duration: 0.2s;
+    border-color: #f5f5f5;
+    background-color: rgb(0, 0, 0);
+    color: #f5f5f5;
+}
+
+#loginbtn:active {
+    border-color: red;
+}
+
+#loginb{
+    color: rgb(0, 0, 0);
+    text-align: left;
+}
+
+#login {
+    width: 100%;
+    max-width: 500px;
+}
+
+#login:hover {
+    
+    transition-duration: 0.2s;
+    background-color: #909090;
+
+}
+
+#signup:hover {
+    transition-duration: 0.2s;
+    background-color: #909090;
+}
+
+body {
+    padding-top: 20px;
+    background-color: #f5f5f5;
+}
+
+#modtit {
+    color: black
+}
+
+/*SIGN IN MODAL --- END*/
+
+/*BUTTONS*/
+
+
+
+.btns {
+    background-color: #4a4e4d;
+    border-color: #4a4e4d;
+    color: #ffffff;
+    border-radius: 3px;
+    min-width: 100px;
+}
+
+.logincardbtn {
+    background-color: #ffffff;
+    border-color:  #ffffff;
+    color: #4a4e4d;
+    border-radius: 3px;
+    min-width: 100px;
+}
+/*BUTTONS --- END*/
