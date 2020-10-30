@@ -1,3 +1,57 @@
+.grey-bg {
+    background-color: #e9ecef;
+}
+
+/* Profile styling */
+.profile-card {
+    margin: 0 2rem 2rem;    /* rem is a size related to the "main" font size of the document */
+    border-radius: 10px;
+}
+
+.badge-lg {
+    font-size: 16px;
+}
+
+td > .badge {
+    font-size: 12px;
+    padding: .6em 1em;      /* em is a size related to the font size of the element */
+}
+
+.badge-container > .badge {
+    padding: .6em 1em;
+    margin-bottom: 10px;    /* Pushing other elements below */
+}
+
+.badge-hover:hover {
+    cursor: pointer;
+}
+
+.badge-hover.badge-primary:hover {
+    background-color: #0056b2;
+}
+
+.jumbotron {
+    /* Override standard padding and margin */
+    padding: 4rem 2rem .5rem;
+    margin-bottom: .5rem;
+}
+
+.logout-header {
+    display: inline-block;
+    float: right;
+    position: relative;     /* Top, bottom, left, right specifies "offset" relative to original position */
+    top: -50px;
+}
+
+@media (max-width: 1100px) {
+    .logout-header {
+        display: block;
+        position: absolute;     /* Absolute means regardless of other elements */
+        top: 10px;
+        right: 15px;
+    }
+}
+
 
 .maintit {
     
@@ -157,8 +211,6 @@ body {
 
 /*BUTTONS*/
 
-
-
 .btns {
     background-color: #4a4e4d;
     border-color: #4a4e4d;
@@ -174,4 +226,3 @@ body {
     border-radius: 3px;
     min-width: 100px;
 }
-/*BUTTONS --- END*/

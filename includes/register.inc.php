@@ -77,6 +77,6 @@ if (isset($_POST['username'], $_POST["name"], $_POST['p'])) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
         }
-        header('Location: ./profile.php');
+        header('Location: ./profile_student.php');
     }
 }
