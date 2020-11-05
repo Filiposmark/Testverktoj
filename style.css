@@ -226,3 +226,38 @@ body {
     border-radius: 3px;
     min-width: 100px;
 }
+
+/*TEACHER-PROFILE*/
+
+#oprethold {
+    display: inline-block;
+    float: right;
+    position: relative;     
+    top: -45px;
+}
+
+#oprettest {
+    display: inline-block;
+    float: right;
+    position: relative;   
+    top: -45px;
+}
+
+
+#seholdelev {
+   
+    float: right;
+    position: relative;
+}
+
+#rediger {
+    float: right;
+    position: relative;
+}
+
+
+
+
+
+
+/*TEACHER-PROFILE --- END*/
