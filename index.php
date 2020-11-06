@@ -1,3 +1,10 @@
+<?php
+include_once 'includes/db_connect.php';
+include_once 'includes/register.inc.php';
+include_once 'includes/functions.php';
+?>
+
+
 <html>
 
 <head>
@@ -6,17 +13,15 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script type="text/JavaScript" src="js/sha512.js"></script>
+    <script type="text/JavaScript" src="js/forms.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body>
-
-   
-
     <!-- second first -->
     <!-- Landing #1 -->
-
     <div class="jumbotron jumbotron-fluid colbg" id="landing">
         <div class="container">
             <div class="row">
@@ -39,51 +44,75 @@
                             <h5 class="card-title">Logind eller opret bruger</h5>
                             <hr class="new4" id="cu">
                             <p class="card-text">Her kan du logge ind eller lave en ny profil</p>
-                            <button type="button" class="logincardbtn" data-toggle="modal" data-target="#exampleModalLong">
+                            <button type="button" class="logincardbtn" data-toggle="modal" data-target="#loginmodal">
                                 Login eller opret profil
                             </button>
-
-                            <!-- modal -->
-                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
+                            <!-- new modal -->
+                            <div class="modal fade" id="loginmodal">
+                                <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modtit">Login - Ny profil</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <!-- login -->
-                                        <div class="modal-body">
-                                            <div class="container-fluid" id="signinup">
-                                                <div class="row">
-                                                    <div class="col-sm">
-                                                        <div class="card" id="login">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">Login</h5>
-                                                                <p class="card-body" id="loginb">This is where you can login to an existing profile.</p>
-                                                                <a href="login.php" class="btn btn-primary" id="loginbtn">Go to login</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm">
-                                                        <div class="card" id="signup">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">Sign-up</h5>
-                                                                <p class="card-body" id="signupb">This is where you can sign up if you don't have an existing profile.</p>
-                                                                <a href="signup.php" class="btn btn-primary" id="signupbtn">Go to sign-up</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <form style="padding: 20px;" action="includes/process_login.php" method="post" name="login_form">
+                                            <div class="form-group">
+                                                <label style="color: #000;"><b>Username:</b></label>
+                                                <input type="text" placeholder="Username..." class="form-control" name="username">
                                             </div>
-                                        </div>
-                                        <!-- login modal -->
-                                        
+
+                                            <div class="form-group">
+                                                <label style="color: #000;"><b>Password:</b></label>
+                                                <input type="password" placeholder="Password..." class="form-control" name="password">
+                                            </div>
+                                            <div>
+                                                <a data-toggle="modal" href="#signupmodal">Don't already have an account? - Make one!</a>
+                                                <hr class="my-4">
+                                            </div>
+                                            <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- signin modal -->
+
+                            <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <form style="padding: 20px; color:#000;" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form">
+                                            <h1>Register with us</h1>
+                                            <ul>
+                                                <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
+                                                <li>Passwords must be at least 6 characters long</li>
+                                                <li>Passwords must contain
+                                                    <ul>
+                                                        <li>At least one uppercase letter (A..Z)</li>
+                                                        <li>At least one lowercase letter (a..z)</li>
+                                                        <li>At least one number (0..9)</li>
+                                                    </ul>
+                                                </li>
+                                                <li>Your password and confirmation must match exactly</li>
+                                            </ul>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1"><b>Full name:</b></label>
+                                                <input type="text" placeholder="Username..." class="form-control" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1"><b>Username:</b></label>
+                                                <input type="text" placeholder="Username..." class="form-control" name="username">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1"><b>Password:</b></label>
+                                                <input type="password" placeholder="Password..." class="form-control" name="password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1"><b>Confirm Password</b></label>
+                                                <input type="password" placeholder="Password..." class="form-control" name="confirmpwd">
+                                            </div>
+                                            <input type="button" value="Register" onclick="return regformhash(this.form, this.form.username, this.form.password, this.form.confirmpwd);" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
                         </div>
                     </div>
                 </div>
@@ -96,7 +125,7 @@
     </div>
 
 
-<!-- Landing 2 -->
+    <!-- Landing 2 -->
 
     <div class="jumbotron jumbotron-fluid" id="landing2">
         <div class="container" id="info">
@@ -116,23 +145,23 @@
             <hr>
             <div class="collapse" id="hvorfor">
                 <div class="card card-body">
-                <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvorfor?</b></h4>
-                <hr>
+                    <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvorfor?</b></h4>
+                    <hr>
 
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
             </div>
             <div class="collapse" id="hvad">
                 <div class="card card-body">
-                <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvad?</b></h4>
-                <hr>
+                    <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvad?</b></h4>
+                    <hr>
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
             </div>
             <div class="collapse" id="hvordan">
                 <div class="card card-body">
-                <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvordan?</b></h4>
-                <hr>
+                    <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvordan?</b></h4>
+                    <hr>
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
             </div>
@@ -192,8 +221,4 @@
             </div>
         </div>
     </div>
-
-
-
-
 </body>

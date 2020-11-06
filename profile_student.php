@@ -166,7 +166,7 @@ sec_session_start();
         </div>
     </div>
 
-<?php else : echo "Du skal være logget ind for at se siden. <a href='login.php'>Log ind her</a>"; endif; ?>
+<?php else : echo "Du skal være logget ind for at se siden. <a href='index.php'>Log ind her</a>"; endif; ?>
 </body>
 </html>
 
