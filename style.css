@@ -2,6 +2,10 @@
     background-color: #e9ecef;
 }
 
+.hover:hover {
+    cursor: pointer;
+}
+
 .img-center {
     display: inline-block;
     margin-left: auto;
@@ -18,9 +22,24 @@
     text-overflow:ellipsis;
 }
 
+.btn-pill {
+    border-radius: 100px;
+    height: 28px;
+    line-height: 14px;
+    width: 40px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
 .test-table-row-active {
     color: #212529;
     background-color: rgba(49, 140, 231,.2);
+}
+
+.answer-correct {
+    color: rgb(40, 167, 69);
 }
 
 /* Profile styling */

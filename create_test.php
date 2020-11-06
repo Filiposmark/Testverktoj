@@ -24,7 +24,7 @@ sec_session_start();
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="container-fluid grey-bg" ng-controller="createTestController as test">
-<h2>Test</h2>
+<h1>Opret test</h1>
 <div class="card">Noget instilling af testen her. Navn, emne, mv.</div>
 <br>
 <hr>
@@ -85,6 +85,29 @@ sec_session_start();
                             <label for="question-input">Spørgsmål</label>
                             <input type="text" class="form-control" id="question-input" placeholder="Stil dit spørgsmål her ..." ng-model="test.questions[test.activeEditingIndex]['question']">
                         </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;" ng-show="test.questions[test.activeEditingIndex]['type'] == '1'">
+                    <h4>Svarmuligheder</h4>
+                    <table class="table">
+                        <tr ng-repeat="answer in test.questions[test.activeEditingIndex]['answers']">
+                            <th style="width: 40px; padding-top: 20px;">{{$index+1}}</th>
+                            <td><input type="text" class="form-control" placeholder="Svarmulighed ..." ng-model="answer.answer"></td>
+                            <td style="color: grey; padding-top: 20px; width: 50px;" class="hover" ng-click="(answer['correct']==true) ? answer['correct'] = false : answer['correct'] = true">
+                                <i class="fa fa-check fa-lg" ng-class="{'answer-correct': answer['correct']}"></i>
+                            </td>
+                            <td style="width: 50px; padding-top: 15px;"><div class="btn btn-danger btn-pill text-bold" ng-click="test.removeAnswer($index)">-</div> </td>
+                        </tr>
+                    </table>
+                    <div class="btn btn-success btn-pill text-bold" ng-click="test.questions[test.activeEditingIndex]['answers'].push({})">+</div>
+                </div>
+
+
+                <br><br>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-danger" ng-click="test.removeQuestion(test.activeEditingIndex)">Slet spørgsmål</button>
                     </div>
                 </div>
             </div>
