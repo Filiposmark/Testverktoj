@@ -2,6 +2,27 @@
     background-color: #e9ecef;
 }
 
+.img-center {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-clickable:hover {
+    cursor: pointer;
+}
+
+.oneliner {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.test-table-row-active {
+    color: #212529;
+    background-color: rgba(49, 140, 231,.2);
+}
+
 /* Profile styling */
 .profile-card {
     margin: 0 2rem 2rem;    /* rem is a size related to the "main" font size of the document */
