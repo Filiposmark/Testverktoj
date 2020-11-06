@@ -24,8 +24,37 @@ sec_session_start();
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="container-fluid grey-bg" ng-controller="createTestController as test">
-<h1>Opret test</h1>
-<div class="card">Noget instilling af testen her. Navn, emne, mv.</div>
+<div class="card">
+    <div class="card-header">
+        <h2>Opret test</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-xl-3">
+                <div class="form-group">
+                    <label for="test-title" class="text-bold">Navn</label>
+                    <input type="text" class="form-control" placeholder="Testens navn ..." id="test-title">
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-xl-2">
+                <div class="form-group">
+                    <label for="test-topic" class="text-bold">Fag</label>
+                    <select class="custom-select" id="test-topic">
+                        <option value="0" selected>Vælg et fag ...</option>
+                        <option value="1">Dansk</option>
+                        <option value="2">Matematik</option>
+                        <option value="3">Kom/IT</option>
+                        <option value="4">Programmering</option>
+                        <option value="5">Fysik</option>
+                        <option value="6">Kemi</option>
+                        <option value="7">Historie</option>
+                        <option value="8">Idéhistorie</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <br>
 <hr>
 
@@ -51,7 +80,6 @@ sec_session_start();
                         </td>
                         <td class="col-10" style="width: 66.66%">
                             <p class="oneliner">
-
                                 {{question.question}}
                             </p>
                         </td>
@@ -72,7 +100,7 @@ sec_session_start();
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label for="quesetion-type-select">Type</label>
+                            <label for="quesetion-type-select" class="text-bold">Type</label>
                             <select class="custom-select" id="quesetion-type-select" ng-model="test.questions[test.activeEditingIndex]['type']">
                                 <option value="0" selected>Vælg spørgsmålets type ...</option>
                                 <option value="1">Multiple choice</option>
@@ -82,14 +110,14 @@ sec_session_start();
                     </div>
                     <div class="col-12 col-md-8">
                         <div class="form-group">
-                            <label for="question-input">Spørgsmål</label>
+                            <label for="question-input" class="text-bold">Spørgsmål</label>
                             <input type="text" class="form-control" id="question-input" placeholder="Stil dit spørgsmål her ..." ng-model="test.questions[test.activeEditingIndex]['question']">
                         </div>
                     </div>
                 </div>
 
                 <div style="margin-top: 30px;" ng-show="test.questions[test.activeEditingIndex]['type'] == '1'">
-                    <h4>Svarmuligheder</h4>
+                    <h5>Svarmuligheder</h5>
                     <table class="table">
                         <tr ng-repeat="answer in test.questions[test.activeEditingIndex]['answers']">
                             <th style="width: 40px; padding-top: 20px;">{{$index+1}}</th>

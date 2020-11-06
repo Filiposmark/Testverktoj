@@ -7,6 +7,7 @@ angular.module('app', [])
 
         test.addQuestion = function() {
             test.questions.push({type: "0", answers:[{}, {}]});
+            test.activeEditingIndex = test.questions.length-1;
             console.log(test.questions);
             console.log(JSON.stringify(test.questions));
         }
