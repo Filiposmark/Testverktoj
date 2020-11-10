@@ -19,111 +19,117 @@ include_once 'includes/functions.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
-<body>
+<body class="container-fluid">
     <!-- second first -->
     <!-- Landing #1 -->
-    <div class="jumbotron jumbotron-fluid colbg" id="landing">
-        <div class="container">
-            <div class="row">
-                <div class="col-3 cent">
-                    <nav>
-                        <a class="navbar-brand" href="#">
-                            <img src="https://ideologi.systime.dk/typo3conf/ext/systime_internetbook/Resources/Public/Images/systimelogo.png" width="30" height="30" style="background-color: #d0e1f9;">
-                        </a>
-                    </nav>
-                </div>
-                <div class="col-6 cent">
-                    <h1 class="maintit" style="padding-top: 300px;">Helvede</h1>
-                    <hr class="new4" id="tithr">
-                    <h5 style="color: #4a4e4d; font-weight: 400;">Fjerner broen mellem lærer og elev.</h5>
+    <div class="container mycont bg" >
+        <div class="row">
+            <div class="col-12 col-xl-4">
+                <a class="navbar-brand" href="index.php">
+                    <img id="logo" src="https://studerende.ida.dk/wp-content/uploads/2019/04/systime_yellow_rgb.png" width="98" height="24" alt="">
+                </a>
+            </div>
 
+            <div class="col-12 col-xl-4" style="text-align: center;">
+                <div id="heading">
+                    <h1>Testværktøj</h1>
                 </div>
-                <div class="col-3">
-                    <div class="card" style="width: 15rem" id="logincard">
-                        <div class="card-body">
-                            <h5 class="card-title">Logind eller opret bruger</h5>
-                            <hr class="new4" id="cu">
-                            <p class="card-text">Her kan du logge ind eller lave en ny profil</p>
-                            <button type="button" class="logincardbtn" data-toggle="modal" data-target="#loginmodal">
-                                Login eller opret profil
-                            </button>
-                            <!-- new modal -->
-                            <div class="modal fade" id="loginmodal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <form style="padding: 20px;" action="includes/process_login.php" method="post" name="login_form">
-                                            <div class="form-group">
-                                                <label style="color: #000;"><b>Username:</b></label>
-                                                <input type="text" placeholder="Username..." class="form-control" name="username">
-                                            </div>
+            </div>
 
-                                            <div class="form-group">
-                                                <label style="color: #000;"><b>Password:</b></label>
-                                                <input type="password" placeholder="Password..." class="form-control" name="password">
-                                            </div>
-                                            <div>
-                                                <a data-toggle="modal" href="#signupmodal">Don't already have an account? - Make one!</a>
-                                                <hr class="my-4">
-                                            </div>
-                                            <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
-                                        </form>
-                                    </div>
-                                </div>
+            <div class="col-12 col-xl-4">
+                <div>
+                    <button type="button" data-toggle="modal" data-target="#loginmodal" class="btn btn-info btn-lg" id="loginbtn">Login</button>
+                </div>
+            </div>
+            <!-- Gem -->
+            <!-- new modal -->
+            <div class="modal fade" id="loginmodal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form style="padding: 20px;" action="includes/process_login.php" method="post" name="login_form">
+                            <div class="form-group">
+                                <label style="color: #000;"><b>Username:</b></label>
+                                <input type="text" placeholder="Username..." class="form-control" name="username">
                             </div>
 
-                            <!-- signin modal -->
-
-                            <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <form style="padding: 20px; color:#000;" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form">
-                                            <h1>Register with us</h1>
-                                            <ul>
-                                                <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
-                                                <li>Passwords must be at least 6 characters long</li>
-                                                <li>Passwords must contain
-                                                    <ul>
-                                                        <li>At least one uppercase letter (A..Z)</li>
-                                                        <li>At least one lowercase letter (a..z)</li>
-                                                        <li>At least one number (0..9)</li>
-                                                    </ul>
-                                                </li>
-                                                <li>Your password and confirmation must match exactly</li>
-                                            </ul>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1"><b>Full name:</b></label>
-                                                <input type="text" placeholder="Username..." class="form-control" name="name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1"><b>Username:</b></label>
-                                                <input type="text" placeholder="Username..." class="form-control" name="username">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1"><b>Password:</b></label>
-                                                <input type="password" placeholder="Password..." class="form-control" name="password">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1"><b>Confirm Password</b></label>
-                                                <input type="password" placeholder="Password..." class="form-control" name="confirmpwd">
-                                            </div>
-                                            <input type="button" value="Register" onclick="return regformhash(this.form, this.form.username, this.form.password, this.form.confirmpwd);" />
-                                        </form>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label style="color: #000;"><b>Password:</b></label>
+                                <input type="password" placeholder="Password..." class="form-control" name="password">
                             </div>
-
-                           
-                        </div>
+                            <div>
+                                <a data-toggle="modal" href="#signupmodal">Don't already have an account? - Make one!</a>
+                                <hr class="my-4">
+                            </div>
+                            <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
+                        </form>
                     </div>
                 </div>
             </div>
 
+            <!-- signin modal -->
 
-
+            <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <form style="padding: 20px; color:#000;" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form">
+                            <h1>Register with us</h1>
+                            <ul>
+                                <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
+                                <li>Passwords must be at least 6 characters long</li>
+                                <li>Passwords must contain
+                                    <ul>
+                                        <li>At least one uppercase letter (A..Z)</li>
+                                        <li>At least one lowercase letter (a..z)</li>
+                                        <li>At least one number (0..9)</li>
+                                    </ul>
+                                </li>
+                                <li>Your password and confirmation must match exactly</li>
+                            </ul>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1"><b>Full name:</b></label>
+                                <input type="text" placeholder="Username..." class="form-control" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1"><b>Username:</b></label>
+                                <input type="text" placeholder="Username..." class="form-control" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1"><b>Password:</b></label>
+                                <input type="password" placeholder="Password..." class="form-control" name="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1"><b>Confirm Password</b></label>
+                                <input type="password" placeholder="Password..." class="form-control" name="confirmpwd">
+                            </div>
+                            <input type="button" value="Register" onclick="return regformhash(this.form, this.form.username, this.form.password, this.form.confirmpwd);" />
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+        <hr>
+        
+        <div style="text-align: center;">
+            <h2>Fjerner broen mellem lærer og elever</h2>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-xl-6">
+                    <h3 style="color: #fff;">Jonas, 2G</h3>
+                    <h4 style="color: #999999;"><i>"Det er blevet nemmere for mig at gå til min lærer"</i></h4>
+                    <img class="img-fluid img-thumbnail" src="https://unord.dk/wp-content/uploads/2019/11/10_klasse-hillerod-teknisk-skole.jpg" style="width:100%">
+                </div>
+                <div class="col-12 col-xl-6">
+                    <h3 style="color: #fff;">Mette, Ny lærer</h3>
+                    <h4 style="color: #999999;"><i>"Jeg er blevet opmærksom på nogle af de mere udfordrede elever"</i></h4>
+                    <img class="img-fluid img-thumbnail" src="https://www.altinget.dk/images/article/191154/63761.jpg" style="width:100%">
 
+                </div>
+            </div>
+        </div>
     </div>
-
 
     <!-- Landing 2 -->
 
@@ -133,13 +139,13 @@ include_once 'includes/functions.php';
             <hr>
             <div class="row">
                 <div class="col-sm cent">
-                    <button class="btns" data-toggle="collapse" href="#hvad" role="button">Hvad?</button>
+                    <button class="btn btn-dark" data-toggle="collapse" href="#hvad" role="button">Hvad?</button>
                 </div>
                 <div class="col-sm cent">
-                    <button class="btns" data-toggle="collapse" href="#hvorfor" role="button">Hvorfor?</button>
+                    <button class="btn btn-dark" data-toggle="collapse" href="#hvorfor" role="button">Hvorfor?</button>
                 </div>
                 <div class="col-sm cent">
-                    <button class="btns" data-toggle="collapse" href="#hvordan" role="button">Hvordan?</button>
+                    <button class="btn btn-dark" data-toggle="collapse" href="#hvordan" role="button">Hvordan?</button>
                 </div>
             </div>
             <hr>
