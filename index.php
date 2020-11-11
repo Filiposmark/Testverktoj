@@ -38,7 +38,7 @@ include_once 'includes/functions.php';
 
             <div class="col-12 col-xl-4">
                 <div>
-                    <button type="button" data-toggle="modal" data-target="#loginmodal" class="btn btn-info btn-lg" id="loginbtn">Login</button>
+                    <button type="button" data-toggle="modal" data-target="#loginmodal" class="btn btn-dark btn-lg" id="loginbtn">Login</button>
                 </div>
             </div>
             <!-- Gem -->
@@ -107,25 +107,25 @@ include_once 'includes/functions.php';
                 </div>
             </div>
         </div>
-        <hr>
+        
         
         <div style="text-align: center;">
-            <h2>Fjerner broen mellem lærer og elever</h2>
+            <h4 class="text-muted">Fjerner broen mellem lærer og elever</h4>
         </div>
-        <br>
+        <hr> 
         <br>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-xl-6">
-                    <h3 style="color: #fff;">Jonas, 2G</h3>
-                    <h4 style="color: #999999;"><i>"Det er blevet nemmere for mig at gå til min lærer"</i></h4>
+                    <h3>Jonas, 2G</h3>
+                    <p><i>"Det er blevet nemmere for mig at gå til min lærer når det bliver svært"</i></p>
                     <img class="img-fluid img-thumbnail" src="https://unord.dk/wp-content/uploads/2019/11/10_klasse-hillerod-teknisk-skole.jpg" style="width:100%">
                 </div>
-                <div class="col-12 col-xl-6">
-                    <h3 style="color: #fff;">Mette, Ny lærer</h3>
-                    <h4 style="color: #999999;"><i>"Jeg er blevet opmærksom på nogle af de mere udfordrede elever"</i></h4>
-                    <img class="img-fluid img-thumbnail" src="https://www.altinget.dk/images/article/191154/63761.jpg" style="width:100%">
 
+                <div class="col-12 col-xl-6">
+                    <h3>Mette, Ny lærer</h3>
+                    <p><i>"Jeg er blevet opmærksom på nogle af de mere udfordrede elever"</i></p>
+                    <img class="img-fluid img-thumbnail" src="https://www.altinget.dk/images/article/191154/63761.jpg" style="width:100%">
                 </div>
             </div>
         </div>
