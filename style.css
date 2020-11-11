@@ -63,16 +63,14 @@ td > .badge {
 
 
 #logincard {
-  
     position: relative;
     float: right;
     background-color: #4a4e4d;
-    color: #f4f4f8;
-    
+    color: #f4f4f8;   
 }
 
 .bg {
-    background-image: url("https://education.gsu.edu/files/2020/02/teaching-students-classroom-1920x1080.jpg");
+    background-image: url("assets/backgroundimage.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -128,7 +126,7 @@ hr.new4 {
 
   position: relative;
   left: 50px;
-  top: 20px;
+  top: 40px;
 }
 
 #end {
