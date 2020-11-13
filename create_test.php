@@ -37,22 +37,41 @@ sec_session_start();
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-12 col-lg-6 col-xl-3">
-                <div class="form-group">
-                    <label for="test-title" class="text-bold">Navn</label>
-                    <input type="text" class="form-control" placeholder="Testens navn ..." id="test-title" ng-model="test.test.title">
+            <div class="col-12 col-lg-9 col-xl-5">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <div class="form-group">
+                            <label for="test-title" class="text-bold">Navn</label>
+                            <input type="text" class="form-control" placeholder="Testens navn ..." id="test-title" ng-model="test.test.title">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="form-group">
+                            <label for="test-topic" class="text-bold">Fag</label>
+                            <select class="custom-select" id="test-topic" ng-model="test.test.topic">
+                                <option value="" disabled selected style="display:none">Vælg et fag ...</option>    <!-- Kind of placeholder which should not be visible -->
+                                <option ng-repeat="topic in test.topics" ng-value="topic.id*1">{{topic.title}}</option>   <!-- Hacky, but multiplying with 1 makes the string a number -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="date-available" class="text-bold">Tid for start</label>
+                            <input type="datetime-local" class="form-control" id="date-available" ng-model="test.test.date_available">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="date-closed" class="text-bold">Tid for lukning</label>
+                            <input type="datetime-local" class="form-control" id="date-closed" ng-model="test.test.date_closed">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-3 col-xl-2">
-                <div class="form-group">
-                    <label for="test-topic" class="text-bold">Fag</label>
-                    <select class="custom-select" id="test-topic" ng-model="test.test.topic">
-                        <option value="" disabled selected style="display:none">Vælg et fag ...</option>    <!-- Kind of placeholder which should not be visible -->
-                        <option ng-repeat="topic in test.topics" ng-value="topic.id*1">{{topic.title}}</option>   <!-- Hacky, but multiplying with 1 makes the string a number -->
-                    </select>
-                </div>
-            </div>
-            <div class="col-12 col-lg-3 col-xl-6 offset-xl-1">
+            <div class="col-12 col-lg-12 col-xl-6 offset-xl-1">
                 <p style="font-weight: bold; margin-bottom: .5em;">Vælg hold, der skal tilkyttes</p>
                 <p class="card-text badge-container">
                     <span class="badge badge-pill badge-hover"
@@ -61,6 +80,7 @@ sec_session_start();
                           ng-repeat="class in test.classes">{{class.name}}</span>
                 </p>
             </div>
+
         </div>
     </div>
 </div>

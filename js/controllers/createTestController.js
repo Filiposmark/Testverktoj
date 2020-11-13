@@ -12,7 +12,10 @@ angular.module('app', [])
         test.test = {
             title: "",
             topic: 0,
-            questions: [{}]
+            date_available: "",
+            date_closed: "",
+            questions: [{}],
+            classes: [{}]
         };
 
         test.addQuestion = function() {
@@ -118,8 +121,11 @@ angular.module('app', [])
                 test.error = "Du skal vælge et fag.";
             } else if (test.classes.length === 0) {
                 test.error = "Du skal vælge et eller flere hold.";
+            } else if (test.test.date_available === "" || test.test.date_closed === "") {
+                test.error = "Du skal vælge, hvornår testen åbner og lukker";
             } else {
                 // "Everything" is ok, submit test.
+                /*
                 let dataObject = JSON.stringify(test.test); // JSON encode the whole test-object
                 let data = {"action": "saveTest", "login_id": $scope.login_id, "ticket": $scope.login_ticket, "test": dataObject};
                 $http.post("postservice.php", data).then(function (response) {
@@ -136,6 +142,7 @@ angular.module('app', [])
                     console.log(response);
                     test.error = "Klientfejl: saveTest";
                 });
+                */
             }
         }
 
