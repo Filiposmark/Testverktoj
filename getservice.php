@@ -17,14 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] != "GET") {
 
 
 // Check in DB if login_id and ticket matches
-$sql = "SELECT role, ticket FROM members WHERE id=" . $login_id;
-$result = $mysqli->query($sql);
+$sql = "SELECT role, ticket FROM users WHERE id=? LIMIT 1";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("i", $login_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
         if ($row["ticket"] === $ticket) {
-            $user_level = $row["user_level"];
+            $role = $row["role"];
         }
     }
 } else {
@@ -62,7 +65,39 @@ if (!isset($_GET["action"])) {
     }
 
 
-    else if ($action == "") {
+    else if ($action == "loadClasses") {
+        $actionNoMatch = false;
+
+        $sql = "SELECT c.id, c.name FROM classes c INNER JOIN classes_relations cr on c.id = cr.class_id and cr.user_id = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("i", $login_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $classes = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $classes[] = $row;
+            }
+            $response["classes"] = $classes;
+            $response["success"] = true;
+        } else {
+            $response["error"] = "Returned 0 rows";
+        }
+
+        echo json_encode($response);
+    }
+
+
+
+    // Define actions that only teachers and admins can perform
+    if ($role == "teacher" || $role == "admin") {
+
+    }
+
+
+    // Define actions that only admins can perform
+    if ($role == "admin") {
 
     }
 

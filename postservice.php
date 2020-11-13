@@ -27,8 +27,11 @@ elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 
-$sql = "SELECT role, ticket FROM members WHERE id=" . $login_id;
-$result = $mysqli->query($sql);
+$sql = "SELECT role, ticket FROM users WHERE id=? LIMIT 1";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("i", $login_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     // output data of each row

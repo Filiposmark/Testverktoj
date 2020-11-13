@@ -24,6 +24,13 @@ sec_session_start();
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="container-fluid grey-bg" ng-controller="createTestController as test">
+
+<script>
+    // Used by angularjs controller
+    let login_id = "<?php echo $_SESSION['user_id']; ?>";
+    let login_ticket = "<?php echo $_SESSION['ticket']; ?>";
+</script>
+
 <div class="card">
     <div class="card-header">
         <h2>Opret test</h2>
@@ -33,24 +40,26 @@ sec_session_start();
             <div class="col-12 col-lg-6 col-xl-3">
                 <div class="form-group">
                     <label for="test-title" class="text-bold">Navn</label>
-                    <input type="text" class="form-control" placeholder="Testens navn ..." id="test-title">
+                    <input type="text" class="form-control" placeholder="Testens navn ..." id="test-title" ng-model="test.test.title">
                 </div>
             </div>
             <div class="col-12 col-lg-3 col-xl-2">
                 <div class="form-group">
                     <label for="test-topic" class="text-bold">Fag</label>
-                    <select class="custom-select" id="test-topic">
-                        <option value="0" selected>Vælg et fag ...</option>
-                        <option value="1">Dansk</option>
-                        <option value="2">Matematik</option>
-                        <option value="3">Kom/IT</option>
-                        <option value="4">Programmering</option>
-                        <option value="5">Fysik</option>
-                        <option value="6">Kemi</option>
-                        <option value="7">Historie</option>
-                        <option value="8">Idéhistorie</option>
+                    <select class="custom-select" id="test-topic" ng-model="test.test.topic">
+                        <option value="" disabled selected style="display:none">Vælg et fag ...</option>    <!-- Kind of placeholder which should not be visible -->
+                        <option ng-repeat="topic in test.topics" ng-value="topic.id*1">{{topic.title}}</option>   <!-- Hacky, but multiplying with 1 makes the string a number -->
                     </select>
                 </div>
+            </div>
+            <div class="col-12 col-lg-3 col-xl-6 offset-xl-1">
+                <p style="font-weight: bold; margin-bottom: .5em;">Vælg hold, der skal tilkyttes</p>
+                <p class="card-text badge-container">
+                    <span class="badge badge-pill badge-hover"
+                          ng-class="{'badge-success': class.selected, 'badge-danger': !class.selected}"
+                          ng-click="class.selected = !class.selected"
+                          ng-repeat="class in test.classes">{{class.name}}</span>
+                </p>
             </div>
         </div>
     </div>
@@ -103,8 +112,8 @@ sec_session_start();
                             <label for="quesetion-type-select" class="text-bold">Type</label>
                             <select class="custom-select" id="quesetion-type-select" ng-model="test.questions[test.activeEditingIndex]['type']">
                                 <option value="0" selected>Vælg spørgsmålets type ...</option>
-                                <option value="1">Multiple choice</option>
-                                <option value="2">Fritekst</option>
+                                <option ng-value="1*1">Multiple choice</option>
+                                <option ng-value="2*1">Fritekst</option>
                             </select>
                         </div>
                     </div>
@@ -140,6 +149,13 @@ sec_session_start();
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<br><br>
+<div class="row">
+    <div class="col-12">
+        <button class="btn btn-success" style="float: right;" ng-click="test.saveTest()">Gem test</button>
     </div>
 </div>
 
