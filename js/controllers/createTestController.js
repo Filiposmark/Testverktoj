@@ -32,8 +32,7 @@ angular.module('app', [])
         }
 
         test.removeAnswer = function(index) {
-            console.log("Remove " + index);
-            if (test.questions[test.activeEditingIndex]['answers'] > 2) {
+            if (test.questions[test.activeEditingIndex]['answers'].length > 2) {
                 test.questions[test.activeEditingIndex]['answers'].splice(index, 1);
             }
         }
