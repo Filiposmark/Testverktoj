@@ -7,3 +7,4 @@ Tænker at det skal udvikles med webudvikling...?
 
 ## Link til brugertest
 WIP
+Database-struktur: https://dbdiagram.io/d/5fae43d63a78976d7b7bc007
