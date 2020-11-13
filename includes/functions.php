@@ -56,6 +56,7 @@ function login($username, $password, $mysqli) {
 
                 $login_string = hash('sha512', $db_password . $user_browser);
                 $_SESSION['login_string'] = $login_string;
+                $_SESSION['ticket'] = $login_string;
 
                 $sql = "UPDATE users SET ticket='" . $login_string . "' WHERE username = '" . $username . "'";
                 if ($mysqli->query($sql) !== TRUE) {

@@ -2,6 +2,48 @@
     background-color: #e9ecef;
 }
 
+.hover:hover {
+    cursor: pointer;
+}
+
+.img-center {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-clickable:hover {
+    cursor: pointer;
+}
+
+.oneliner {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    max-width: 66%;
+    width: 66%;
+}
+
+.btn-pill {
+    border-radius: 100px;
+    height: 28px;
+    line-height: 14px;
+    width: 40px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.test-table-row-active {
+    color: #212529;
+    background-color: rgba(49, 140, 231,.2);
+}
+
+.answer-correct {
+    color: rgb(40, 167, 69);
+}
+
 /* Profile styling */
 .profile-card {
     margin: 0 2rem 2rem;    /* rem is a size related to the "main" font size of the document */
@@ -20,15 +62,17 @@ td > .badge {
 .badge-container > .badge {
     padding: .6em 1em;
     margin-bottom: 10px;    /* Pushing other elements below */
+    margin-right: 8px;
 }
 
 .badge-hover:hover {
     cursor: pointer;
 }
 
-.badge-hover.badge-primary:hover {
-    background-color: #0056b2;
-}
+.badge-hover.badge-primary:hover {background-color: #0056b2;}
+.badge-hover.badge-danger:hover {background-color: #9a2530;}
+.badge-hover.badge-success:hover {background-color: #218838;}
+
 
 .jumbotron {
     /* Override standard padding and margin */
