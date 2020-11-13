@@ -54,9 +54,62 @@ if (!isset($request->action)) {
     $response["msg"] = "No action defined";
     echo json_encode($response);
 } else {
-    if ($action == "saveTest") {
 
+
+
+
+    // Define actions that only teachers and admins can perform
+    if ($role == "teacher" || $role == "admin") {
+        if ($action == "saveTest") {
+            $actionNoMatch = false;
+
+            // Get the object from json-encoded string
+            $test = get_object_vars(json_decode($request->test));
+
+            $response["test"] = $test;
+
+            // Insert into DB
+            $stmt = $mysqli->prepare("INSERT INTO tests (teacher_id, date_available, date_closed, topic, title) VALUES (?,?,?,?,?)");
+            $stmt->bind_param("iiiis", $login_id, $test["date_available_millis"], $test["date_closed_millis"], $test["topic"], $test["title"]);
+            $stmt->execute();
+
+            // Get the last id from DB (which is the one we just inserted)
+            $test_id = mysqli_insert_id($mysqli);
+            $response["test_id"] = $test_id;
+
+            // Now create a statement to insert questions
+            $stmt = $mysqli->prepare("INSERT INTO test_questions (test_id, question, type, answers) VALUES (?,?,?,?)");
+            $stmt->bind_param("isis", $test_id, $question, $type, $answers);
+
+            // Loop through all questions and perform the query
+            $response["questions"] = $test["questions"];
+            $response["classes"] = $test["classes"];
+
+            foreach ($test["questions"] as $current_question) {
+                $question = $current_question->question;
+                $type = $current_question->type;
+                $answers = json_encode($current_question->answers);
+                $stmt->execute();
+            }
+
+
+            // Now create statement to assign classes to test
+            $stmt = $mysqli->prepare("INSERT INTO test_classes (test_id, class_id) VALUES (?,?)");
+            $stmt->bind_param("ii", $test_id, $class);
+
+            $response["classes"] = $test["classes"];
+            foreach ($test["classes"] as $class) {
+                $stmt->execute();
+            }
+
+            $response["success"] = true;
+
+
+            echo json_encode($response);
+
+        }
     }
+
 
 
     if ($actionNoMatch) {

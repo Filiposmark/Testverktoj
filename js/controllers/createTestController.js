@@ -5,6 +5,8 @@ angular.module('app', [])
         $scope.login_id = login_id;
         $scope.login_ticket = login_ticket;
 
+        test.now = new Date();
+
         test.activeEditingIndex = 0;
         test.questions = [{type:"0", answers:[{}, {}]}];
         test.topics = [];
@@ -12,8 +14,8 @@ angular.module('app', [])
         test.test = {
             title: "",
             topic: 0,
-            date_available: "",
-            date_closed: "",
+            date_available: new Date(test.now.getFullYear(), test.now.getMonth(), test.now.getDay(), test.now.getHours(), test.now.getMinutes()), // A bit hacky, but it works .....
+            date_closed: new Date(test.now.getFullYear(), test.now.getMonth(), test.now.getDay(), test.now.getHours(), test.now.getMinutes()),
             questions: [{}],
             classes: [{}]
         };
@@ -21,8 +23,6 @@ angular.module('app', [])
         test.addQuestion = function() {
             test.questions.push({type: "0", answers:[{}, {}]});
             test.activeEditingIndex = test.questions.length-1;
-            console.log(test.questions);
-            console.log(JSON.stringify(test.questions));
         }
 
         test.removeQuestion = function(index) {
@@ -57,7 +57,6 @@ angular.module('app', [])
                 function(response) {
                     if (response.data.success) {
                         test.topics = response.data.topics;
-                        console.log(test.topics);
                     } else {
                         // Request succeeded, but the server tells us that something is wrong
                         console.log("Server error:")
@@ -85,7 +84,6 @@ angular.module('app', [])
                         for (let i=0; i<test.classes.length; i++) {
                             test.classes[i].selected = false;
                         }
-                        console.log(test.classes);
                     } else {
                         // Request succeeded, but the server tells us that something is wrong
                         console.log("Server error:")
@@ -107,11 +105,14 @@ angular.module('app', [])
 
 
         test.saveTest = function() {
+            test.error = "";
             test.test.questions = test.questions;
             test.test.classes = [];
             for (let i=0; i<test.classes.length; i++) {
                 if (test.classes[i].selected) {test.test.classes.push(test.classes[i].id);}
             }
+            test.test.date_available_millis = test.test.date_available.getTime();
+            test.test.date_closed_millis = test.test.date_closed.getTime();
             console.log("Test main obj: ");
             console.log(test.test);
 
@@ -122,14 +123,16 @@ angular.module('app', [])
             } else if (test.classes.length === 0) {
                 test.error = "Du skal vælge et eller flere hold.";
             } else if (test.test.date_available === "" || test.test.date_closed === "") {
-                test.error = "Du skal vælge, hvornår testen åbner og lukker";
+                //test.error = "Du skal vælge, hvornår testen åbner og lukker";
             } else {
                 // "Everything" is ok, submit test.
-                /*
-                let dataObject = JSON.stringify(test.test); // JSON encode the whole test-object
-                let data = {"action": "saveTest", "login_id": $scope.login_id, "ticket": $scope.login_ticket, "test": dataObject};
+                let testObject = JSON.stringify(test.test); // JSON encode the whole test-object
+                console.log(testObject);
+                let data = {"action": "saveTest", "login_id": $scope.login_id, "ticket": $scope.login_ticket, "test": testObject};
                 $http.post("postservice.php", data).then(function (response) {
                     if (response.data.success) {
+                        console.log("Success");
+                        console.log(response);
                         let cur_hostname = window.location.hostname;
                         window.location.replace("https://" + cur_hostname + "/profile_teacher.php");
                     } else {
@@ -142,7 +145,7 @@ angular.module('app', [])
                     console.log(response);
                     test.error = "Klientfejl: saveTest";
                 });
-                */
+
             }
         }
 
