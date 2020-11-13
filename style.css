@@ -20,6 +20,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow:ellipsis;
+    max-width: 66%;
+    width: 66%;
 }
 
 .btn-pill {

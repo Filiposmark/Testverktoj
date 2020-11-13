@@ -59,11 +59,13 @@ angular.module('app', [])
                         // Request succeeded, but the server tells us that something is wrong
                         console.log("Server error:")
                         console.log(response);
+                        test.error = "Serverfejl: loadTopics";
                     }
                 }, function(response) {
                     // Failed, handle this
                     console.log("Request error: ")
                     console.log(response);
+                    test.error = "Klientfejl: loadTopics";
                 });
         }
 
@@ -85,11 +87,13 @@ angular.module('app', [])
                         // Request succeeded, but the server tells us that something is wrong
                         console.log("Server error:")
                         console.log(response);
+                        test.error = "Serverfejl: loadClasses";
                     }
                 }, function(response) {
                     // Failed, handle this
                     console.log("Request error: ")
                     console.log(response);
+                    test.error = "Klientfejl: loadClasses";
                 });
         }
 
@@ -107,6 +111,32 @@ angular.module('app', [])
             }
             console.log("Test main obj: ");
             console.log(test.test);
+
+            if (test.test.title === "") {
+                test.error = "Du skal give testen et navn.";
+            } else if (test.test.topic == null) {
+                test.error = "Du skal vælge et fag.";
+            } else if (test.classes.length === 0) {
+                test.error = "Du skal vælge et eller flere hold.";
+            } else {
+                // "Everything" is ok, submit test.
+                let dataObject = JSON.stringify(test.test); // JSON encode the whole test-object
+                let data = {"action": "saveTest", "login_id": $scope.login_id, "ticket": $scope.login_ticket, "test": dataObject};
+                $http.post("postservice.php", data).then(function (response) {
+                    if (response.data.success) {
+                        let cur_hostname = window.location.hostname;
+                        window.location.replace("https://" + cur_hostname + "/profile_teacher.php");
+                    } else {
+                        console.log("Server error:")
+                        console.log(response);
+                        test.error = "Serverfejl: saveTest";
+                    }
+                }, function (response) {
+                    console.log("Request error: ")
+                    console.log(response);
+                    test.error = "Klientfejl: saveTest";
+                });
+            }
         }
 
     });

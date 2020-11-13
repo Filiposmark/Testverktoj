@@ -156,6 +156,7 @@ sec_session_start();
 <div class="row">
     <div class="col-12">
         <button class="btn btn-success" style="float: right;" ng-click="test.saveTest()">Gem test</button>
+        <p style="color: red; float: right;">{{test.error}} &nbsp;&nbsp;</p>
     </div>
 </div>
 
