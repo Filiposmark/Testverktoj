@@ -9,8 +9,12 @@ if (isset($_POST['username'], $_POST['p'])) {
     $password = $_POST['p']; // The hashed password.
 
     if (login($username, $password, $mysqli) == true) {
-        // Login success
-        header('Location: ../profile_student.php');
+        // Login success, now determine whether teacher or student
+        if ($_SESSION["role"] === "student") {
+            header('Location: ../profile_student.php');
+        } else if ($_SESSION["role"] === "teacher" || $_SESSION["role"] === "admin") {
+            header('Location: ../profile_teacher.php');
+        }
     } else {
         // Login failed
         header('Location: ../login.php?error=1');
