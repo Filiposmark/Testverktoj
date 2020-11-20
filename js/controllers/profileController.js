@@ -44,3 +44,22 @@ app.controller('studentProfileController', function ($scope, $http, LoadClasses)
     let promise = student.init();
 
 });
+
+
+
+app.controller('teacherController', function($scope, $http, LoadClasses) {
+    let teacher = this;
+
+    $scope.login_id = login_id;
+    $scope.login_ticket = login_ticket;
+
+    teacher.classes = [];
+
+    teacher.init = function() {
+        LoadClasses.load($scope.login_id, $scope.login_ticket).then(function(response) {
+            teacher.classes = response;
+        });
+    };
+
+    let promise = teacher.init();
+});

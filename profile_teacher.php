@@ -4,8 +4,7 @@ include_once 'includes/functions.php';
 sec_session_start();
 ?>
 <!DOCTYPE html>
-<html>
-
+<html ng-app="app">
 <head>
     <title>Profil</title>
 
@@ -21,7 +20,7 @@ sec_session_start();
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="container-fluid grey-bg">
+<body class="container-fluid grey-bg" ng-controller="teacherController as teacher">
     <?php if (login_check($mysqli) == true) : ?>
         <div class="row">
             <div class="col-12">
@@ -98,8 +97,7 @@ sec_session_start();
 
                         <hr>
                         <p class="card-text badge-container">
-                            <span class="badge badge-pill badge-primary badge-lg badge-hover">3I MAT</span>
-                            <span class="badge badge-pill badge-primary badge-lg badge-hover">3I KIT</span>
+                            <span class="badge badge-pill badge-primary badge-lg badge-hover" ng-repeat="class in teacher.classes">{{class.name}}</span>
                         </p>
                     </div>
                 </div>
