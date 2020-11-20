@@ -89,6 +89,37 @@ if (!isset($_GET["action"])) {
     }
 
 
+    else if ($action == "loadTests") {
+        $actionNoMatch = false;
+
+        $sql = "SELECT t.date_available, t.date_closed, t.title, c.name as class_name, teacher.name as teacher_name, top.title as topic
+                FROM tests t
+                INNER JOIN users teacher on t.teacher_id = teacher.id
+                INNER JOIN topics top on t.topic = top.id
+                INNER JOIN test_classes tc on tc.test_id = t.id 
+                INNER JOIN classes c on tc.class_id = c.id
+                INNER JOIN classes_relations cr on c.id = cr.class_id
+                INNER JOIN users u on cr.user_id = u.id and u.id = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("i", $login_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $tests = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $tests[] = $row;
+            }
+            $response["tests"] = $tests;
+            $response["success"] = true;
+        }else {
+            $response["error"] = "Returned 0 rows";
+        }
+
+        echo json_encode($response);
+    }
+
+
 
     // Define actions that only teachers and admins can perform
     if ($role == "teacher" || $role == "admin") {
