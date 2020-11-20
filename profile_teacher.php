@@ -8,6 +8,8 @@ sec_session_start();
 <head>
     <title>Profil</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -19,8 +21,15 @@ sec_session_start();
 
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="container-fluid grey-bg" ng-controller="teacherController as teacher">
+
+<script>
+    // Used by angularjs controller
+    let login_id = "<?php echo $_SESSION['user_id']; ?>";
+    let login_ticket = "<?php echo $_SESSION['ticket']; ?>";
+</script>
+
+
     <?php if (login_check($mysqli) == true) : ?>
         <div class="row">
             <div class="col-12">
@@ -37,7 +46,10 @@ sec_session_start();
             <div class="col-12 col-xl-6">
                 <div class="card profile-card">
                     <div class="card-body">
-                        <h3 class="card-title">Aktive tests</h3>
+                        <h3 class="card-title">
+                            Aktive tests
+                            <a href="create_test.php" class="btn btn-info" style="float: right;">Opret test</a>
+                        </h3>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -50,15 +62,13 @@ sec_session_start();
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><span class="badge badge-pill badge-primary">3I MAT</span></td>
+                                <tr ng-repeat="test in teacher.tests['active']">
+                                    <td><span class="badge badge-pill badge-primary">{{test.class_name}}</span></td>
                                     <td><i class="fas fa-chart-line fa-lg"></i></td>
-                                    <td>Funktioner</td>
-                                    <td>29-10-2020</td>
+                                    <td>{{test.title}}</td>
+                                    <td>{{test.date_closed_string}}</td>
                                     <td>0/24</td>
-                                    <td>
-                                        <div class="btn btn-primary" id="rediger">Rediger</div>
-                                    </td>
+                                    <td><div class="btn btn-primary" id="rediger">Rediger</div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -66,10 +76,10 @@ sec_session_start();
                 </div>
                 <div class="card profile-card">
                     <div class="card-body">
-                        <h3 class="card-title">Dine hold</h3>
-                        <td>
-                            <button class="btn btn-primary" id="oprethold" data-toggle="modal" data-target="#opretholdmodal">Opret hold</button>
-                        </td>
+                        <h3 class="card-title">
+                            Dine hold
+                            <a href="create_test.php" class="btn btn-info" style="float: right;">Opret hold</a>
+                        </h3>
 
                         <div class="modal fade" id="opretholdmodal">
                             <div class="modal-dialog" role="document">
@@ -108,7 +118,7 @@ sec_session_start();
                                 <h3 class="card-title">Se progression:</h3>
                             </div>
                             <div class="col-6">
-                                <div class="btn-group" role="group" id="seholdelev">
+                                <div class="btn-group" role="group" id="seholdelev" style="float:right;">
                                     <button type="button" class="btn btn-primary">Se hold</button>
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -133,65 +143,25 @@ sec_session_start();
 
                 <div class="card profile-card">
                     <div class="card-body">
-                        <h3 class="card-title">Gemte test</h3>
+                        <h3 class="card-title">Kommende tests</h3>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Fag</th>
                                     <th></th>
                                     <th>Testens navn</th>
-                                    <th>Årgang</th>
                                     <th>Sidst brugt</th>
-                                    <th>Varighed</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><span class="badge badge-pill badge-primary">KIT</span></td>
-                                    <td><i class="fas fa-palette fa-lg"></i></td>
-                                    <td>Farveteori</td>
-                                    <td>2G</td>
-                                    <td>12-11-2020</td>
-                                    <td>30 min</td>
-                                    <td>
-                                        <div class="btn btn-secondary">Opret test med skabelon</div>
-                                    </td>
+                                <tr ng-repeat="test in teacher.tests['upcoming']">
+                                    <td><span class="badge badge-pill badge-primary">{{test.class_name}}</span></td>
+                                    <td><i class="fas fa-chart-line fa-lg"></i></td>
+                                    <td>{{test.title}}</td>
+                                    <td>{{test.date_available_string}}</td>
+                                    <td><div class="btn btn-secondary">Opret test med skabelon</div></td>
                                 </tr>
-                                <tr>
-                                    <td><span class="badge badge-pill badge-primary">KIT</span></td>
-                                    <td><i class="fas fa-palette fa-lg"></i></td>
-                                    <td>Farveteori</td>
-                                    <td>1G</td>
-                                    <td>12-11-2020</td>
-                                    <td>45 min</td>
-                                    <td>
-                                        <div class="btn btn-secondary">Opret test med skabelon</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge badge-pill badge-primary">KIT</span></td>
-                                    <td><i class="fas fa-palette fa-lg"></i></td>
-                                    <td>Farveteori</td>
-                                    <td>2G</td>
-                                    <td>12-11-2020</td>
-                                    <td>60 min</td>
-                                    <td>
-                                        <div class="btn btn-secondary">Opret test med skabelon</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge badge-pill badge-primary">KIT</span></td>
-                                    <td><i class="fas fa-palette fa-lg"></i></td>
-                                    <td>Farveteori</td>
-                                    <td>3G</td>
-                                    <td>12-11-2020</td>
-                                    <td>120 min</td>
-                                    <td>
-                                        <div class="btn btn-secondary">Opret test med skabelon</div>
-                                    </td>
-                                </tr>
-
                             </tbody>
                         </table>
                     </div>
@@ -200,6 +170,8 @@ sec_session_start();
         </div>
 
 
+
+        <script src="js/controllers/profileController.js"></script>
     <?php else : echo "Du skal være logget ind for at se siden. <a href='login.php'>Log ind her</a>";
     endif; ?>
 

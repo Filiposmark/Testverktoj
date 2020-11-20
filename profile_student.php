@@ -57,12 +57,12 @@ sec_session_start();
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><span class="badge badge-pill badge-primary">3I MAT</span></td>
+                        <tr ng-repeat="test in student.tests['active']">
+                            <td><span class="badge badge-pill badge-primary">{{test.class_name}}</span></td>
                             <td><i class="fas fa-chart-line fa-lg"></i></td>
-                            <td>Funktioner</td>
-                            <td>Larisa Shestakova</td>
-                            <td>29-10-2020</td>
+                            <td>{{test.title}}</td>
+                            <td>{{test.teacher_name}}</td>
+                            <td>{{test.date_closed_string}}</td>
                             <td><div class="btn btn-success">Start test</div></td>
                         </tr>
                         </tbody>
@@ -102,12 +102,12 @@ sec_session_start();
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><span class="badge badge-pill badge-primary">3I KIT</span></td>
-                            <td><i class="fas fa-palette fa-lg"></i></td>
-                            <td>Farveteori</td>
-                            <td>Thomas Fredfeldt</td>
-                            <td>12-11-2020</td>
+                        <tr ng-repeat="test in student.tests['upcoming']">
+                            <td><span class="badge badge-pill badge-primary">{{test.class_name}}</span></td>
+                            <td><i class="fas fa-chart-line fa-lg"></i></td>
+                            <td>{{test.title}}</td>
+                            <td>{{test.teacher_name}}</td>
+                            <td>{{test.date_available_string}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -129,43 +129,15 @@ sec_session_start();
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><span class="badge badge-pill badge-primary">3I KIT</span></td>
-                            <td><i class="fas fa-palette fa-lg"></i></td>
-                            <td>Farveteori</td>
-                            <td>Thomas Fredfeldt</td>
-                            <td>12-11-2020</td>
+                        <tr ng-repeat="test in student.tests['completed']">
+                            <td><span class="badge badge-pill badge-primary">{{test.class_name}}</span></td>
+                            <td><i class="fas fa-chart-line fa-lg"></i></td>
+                            <td>{{test.title}}</td>
+                            <td>{{test.teacher_name}}</td>
+                            <td>{{test.date_closed_string}}</td>
                             <td>10</td>
                             <td><div class="btn btn-secondary">Se resultat</div></td>
                         </tr>
-                        <tr>
-                            <td><span class="badge badge-pill badge-primary">3I KIT</span></td>
-                            <td><i class="fas fa-palette fa-lg"></i></td>
-                            <td>Farveteori</td>
-                            <td>Thomas Fredfeldt</td>
-                            <td>12-11-2020</td>
-                            <td>10</td>
-                            <td><div class="btn btn-secondary">Se resultat</div></td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-pill badge-primary">3I KIT</span></td>
-                            <td><i class="fas fa-palette fa-lg"></i></td>
-                            <td>Farveteori</td>
-                            <td>Thomas Fredfeldt</td>
-                            <td>12-11-2020</td>
-                            <td>10</td>
-                            <td><div class="btn btn-secondary">Se resultat</div></td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-pill badge-primary">3I KIT</span></td>
-                            <td><i class="fas fa-palette fa-lg"></i></td>
-                            <td>Farveteori</td>
-                            <td>Thomas Fredfeldt</td>
-                            <td>12-11-2020</td>
-                            <td>10</td>
-                            <td><div class="btn btn-secondary">Se resultat</div></td>
-                        </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -174,7 +146,7 @@ sec_session_start();
     </div>
 
 
-<script src="js/controllers/profileController.js"></script>
+    <script src="js/controllers/profileController.js"></script>
 <?php else : echo "Du skal være logget ind for at se siden. <a href='index.php'>Log ind her</a>"; endif; ?>
 </body>
 </html>
