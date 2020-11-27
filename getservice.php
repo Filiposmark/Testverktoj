@@ -121,6 +121,52 @@ if (!isset($_GET["action"])) {
 
 
 
+    else if ($action == "loadTest") {
+        $actionNoMatch = false;
+
+        $test_id = filter_input(INPUT_GET, "test_id", FILTER_SANITIZE_NUMBER_INT);
+        $test_id = intval($test_id);
+        $response["id"] = $test_id;
+
+        $test = array();
+        $test_questions = array();
+        $sql = "SELECT t.id, t.teacher_id, t.date_available, t.date_closed, t2.title as topic, t.title FROM tests t INNER JOIN topics t2 on t.topic = t2.id and t.id = ? LIMIT 1";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("i", $test_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $test = $row;
+            }
+        } else {
+            $response["error"] = "returned 0 rows of test details";
+        }
+
+
+        $sql = "SELECT id, question, type, answers FROM test_questions WHERE test_id = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("i", $test_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $test_questions[] = $row;
+            }
+            $test["questions"] = $test_questions;
+            $response["test"] = $test;
+            $response["success"] = true;
+        } else {
+            $response["error"] = "returned 0 rows og test questions";
+        }
+
+        echo json_encode($response);
+    }
+
+
+
     // Define actions that only teachers and admins can perform
     if ($role == "teacher" || $role == "admin") {
 

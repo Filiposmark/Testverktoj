@@ -55,6 +55,52 @@ if (!isset($request->action)) {
     echo json_encode($response);
 } else {
 
+    if ($action == "finishTest") {
+        $actionNoMatch = false;
+
+        $test = get_object_vars(json_decode($request->test));
+        $response["test"] = $test;
+
+        $test_id = $test["id"];
+        $count_multiple_choice = 0;
+        $count_correct = 0;
+
+
+        $sql = "INSERT INTO test_answers (student_id, test_id, question_id, answer) VALUES (?,?,?,?)";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("iiis", $login_id, $test_id, $question_id, $answer);
+
+        foreach ($test["questions_parsed"] as $question) {
+            $question_id = $question->id;
+            $answer = $question->answer;
+            $stmt->execute();
+
+            // If multiple choice question
+            if ($question->type == 1) {
+                $count_multiple_choice++;
+
+                $answers = $question->answers;
+                if ($answers[$question->answer]->correct == true) {
+                    $count_correct++;
+                }
+            }
+        }
+
+
+        // Insert result
+        $percentage_correct = intval($count_correct / $count_multiple_choice * 100);
+        $sql = "INSERT INTO test_results (student_id, test_id, percentage_correct) VALUES (?,?,?)";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("iii", $login_id, $test_id, $percentage_correct);
+        $stmt->execute();
+
+
+        $response["MC-count"] = $count_multiple_choice;
+        $response["MC-corr"] = $count_correct;
+        $response["success"] = true;
+        echo json_encode($response);
+    }
+
 
 
 
