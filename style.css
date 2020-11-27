@@ -342,6 +342,11 @@ body {
     margin:auto;
 }
 
+/*STYLING FOR INPUT FIELD*/
+input#upload-file {
+    display: none;
+}
+
 
 /* Test */
 .question-box {
