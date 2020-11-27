@@ -130,7 +130,7 @@ if (!isset($_GET["action"])) {
 
         $test = array();
         $test_questions = array();
-        $sql = "SELECT t.teacher_id, t.date_available, t.date_closed, t2.title as topic, t.title FROM tests t INNER JOIN topics t2 on t.topic = t2.id and t.id = ? LIMIT 1";
+        $sql = "SELECT t.id, t.teacher_id, t.date_available, t.date_closed, t2.title as topic, t.title FROM tests t INNER JOIN topics t2 on t.topic = t2.id and t.id = ? LIMIT 1";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("i", $test_id);
         $stmt->execute();
@@ -145,7 +145,7 @@ if (!isset($_GET["action"])) {
         }
 
 
-        $sql = "SELECT question, type, answers FROM test_questions WHERE test_id = ?";
+        $sql = "SELECT id, question, type, answers FROM test_questions WHERE test_id = ?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("i", $test_id);
         $stmt->execute();

@@ -53,7 +53,7 @@ sec_session_start();
                 <hr>
                 <div class="center">
                     <p class="hover inline" ng-click="test.changeQuestion(-1)"><i class="fa fa-arrow-left fa-lg"></i></p> &nbsp;
-                    <button class="btn btn-success btn-sm">Aflever test</button> &nbsp;
+                    <button class="btn btn-success btn-sm" ng-click="test.submitTest()">Aflever test</button> &nbsp;
                     <p class="hover inline" ng-click="test.changeQuestion(1)"><i class="fa fa-arrow-right fa-lg"></i></p>
                 </div>
 
