@@ -55,7 +55,7 @@ angular.module('app', [])
                     console.log("Success");
                     console.log(response);
                     let cur_hostname = window.location.hostname;
-                    window.location.replace("https://" + cur_hostname + "/profile_teacher.php");
+                    window.location.replace("https://" + cur_hostname + "/profile_student.php");
                 } else {
                     console.log("Server error:")
                     console.log(response);

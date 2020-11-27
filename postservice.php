@@ -97,7 +97,7 @@ if (!isset($request->action)) {
 
         $response["MC-count"] = $count_multiple_choice;
         $response["MC-corr"] = $count_correct;
-        //$response["success"] = true;
+        $response["success"] = true;
         echo json_encode($response);
     }
 
