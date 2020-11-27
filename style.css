@@ -334,4 +334,11 @@ body {
     margin:auto;
 }
 
+/*STYLING FOR INPUT FIELD*/
 
+input#upload-file {
+    display: none;
+}
+
+
+/*STYLING FOR INPUT FIELD --- END*/
