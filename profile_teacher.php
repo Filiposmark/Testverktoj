@@ -41,6 +41,7 @@ sec_session_start();
                         <?php echo $_SESSION["name"]; ?>!</h1>
                     <p class="lead">Herunder kan du se alle dine tests - gennemførte og kommende. Du kan også se din klasses fremskridt, såvel som individuelle elever.</p>
                     <a href="includes/logout.php" class="btn btn-light logout-header" style="display: inline-block;">Log ud</a>
+                    <a href="profile_student.php" class="btn btn-secondary logout-header" style="display: inline-block;">Se som elev</a>
                     <hr class="my-4">
                 </div>
             </div>
