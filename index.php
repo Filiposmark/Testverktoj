@@ -47,21 +47,21 @@ include_once 'includes/functions.php';
             <div class="modal fade" id="loginmodal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
+                        <div class="modal-header"><h1 style="margin: auto;" class="modal-title">Login på Testverktoj</h1></div>
                         <form style="padding: 20px;" action="includes/process_login.php" method="post" name="login_form">
                             <div class="form-group">
-                                <label style="color: #000;"><b>Username:</b></label>
-                                <input type="text" placeholder="Username..." class="form-control" name="username">
+                                <label style="color: #000;"><b>Brugernavn:</b></label>
+                                <input type="text" placeholder="Brugernavn..." class="form-control" name="username">
                             </div>
 
                             <div class="form-group">
-                                <label style="color: #000;"><b>Password:</b></label>
-                                <input type="password" placeholder="Password..." class="form-control" name="password">
+                                <label style="color: #000;"><b>Adgangskode:</b></label>
+                                <input type="password" placeholder="Adgangskode..." class="form-control" name="password">
                             </div>
                             <div>
-                                <a data-toggle="modal" href="#signupmodal">Don't already have an account? - Make one!</a>
                                 <hr class="my-4">
                             </div>
-                            <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
+                            <input type="button" style="width: 100%;" class="btn btn-dark" value="Login" onclick="formhash(this.form, this.form.password);" />
                         </form>
                     </div>
                 </div>
