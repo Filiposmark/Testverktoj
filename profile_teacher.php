@@ -104,8 +104,14 @@ sec_session_start();
                                                     <i class="fas fa-users"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Klassens navn..." aria-label="Username" aria-describedby="basic-addon1">
+                                            <!-- Class name -->
+                                            <input type="text" class="form-control" name="class_name" placeholder="Klassens navn..." aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
+                                        <p class="lead">.csv filen skal opflyde følgende krav:</p>
+                                        <ul>
+                                            <li>Headeren skal have følgende opsætning: ID,Fornavn,Efternavn,Studieretning</li>
+                                            <li>Elevernes information skal altså skrives på overstående form fx: <br> L 3a 11,Filip,Osmark,Matematik A - Fysik A</li>
+                                        </ul>
                                         <input type="file" id="upload-file" accept=".csv">
                                         <label class="btn btn-primary" for="upload-file">Vælg en fil...</label>
                                         <button class="btn btn-success" style="float: right;" id="upload-btn">Upload fil</button>
