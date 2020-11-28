@@ -15,14 +15,15 @@ include_once 'includes/functions.php';
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script type="text/JavaScript" src="js/sha512.js"></script>
     <script type="text/JavaScript" src="js/forms.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid" style="padding: 0px;">
     <!-- second first -->
     <!-- Landing #1 -->
-    <div class="container mycont bg" >
+    <div class="container mycont bg">
         <div class="row">
             <div class="col-12 col-xl-4">
                 <a class="navbar-brand" href="index.php">
@@ -107,12 +108,12 @@ include_once 'includes/functions.php';
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div style="text-align: center;">
             <h4 class="text-muted">Fjerner broen mellem lærer og elever</h4>
         </div>
-        <hr> 
+        <hr>
         <br>
         <div class="container">
             <div class="row">
@@ -135,40 +136,49 @@ include_once 'includes/functions.php';
 
     <div class="jumbotron jumbotron-fluid" id="landing2">
         <div class="container" id="info">
-            <h1 style="text-align: center; color: #4a4e4d" class="maintit">Generelt om...</h1>
-            <hr>
-            <div class="row">
-                <div class="col-sm cent">
-                    <button class="btn btn-dark" data-toggle="collapse" href="#hvad" role="button">Hvad?</button>
-                </div>
-                <div class="col-sm cent">
-                    <button class="btn btn-dark" data-toggle="collapse" href="#hvorfor" role="button">Hvorfor?</button>
-                </div>
-                <div class="col-sm cent">
-                    <button class="btn btn-dark" data-toggle="collapse" href="#hvordan" role="button">Hvordan?</button>
-                </div>
-            </div>
-            <hr>
-            <div class="collapse" id="hvorfor">
-                <div class="card card-body">
-                    <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvorfor?</b></h4>
-                    <hr>
+            <div class="accordion" id="accordion">
+                <div class="card">
+                    <div class="card-header" id="hvad">
+                        <h5 class="mb-0">
+                            <button class="btn btn-dark collapsed" type="button" style="width: 100%;" data-toggle="collapse" data-target="#hvad_card" aria-expanded="false" aria-controls="hvad_card">
+                                Hvad?
+                            </button>
+                        </h5>
+                    </div>
 
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    <div id="hvad_card" class="collapse" aria-labelledby="hvad" data-parent="#accordion">
+                        <div class="card-body">
+                            Testverktoj er et program som kan test elever i deres færdigheder i de fag som de har i skolen.
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="collapse" id="hvad">
-                <div class="card card-body">
-                    <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvad?</b></h4>
-                    <hr>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                <div class="card">
+                    <div class="card-header" id="hvorfor">
+                        <h5 class="mb-0">
+                            <button class="btn btn-dark collapsed" style="width: 100%;" type="button" data-toggle="collapse" data-target="#hvorfor_card" aria-expanded="false" aria-controls="hvorfor_card">
+                                Hvorfor?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="hvorfor_card" class="collapse" aria-labelledby="hvorfor" data-parent="#accordion">
+                        <div class="card-body">
+                            Ud fra vores undersøgelser, kan det at man bliver testet faktisk godt både øge det faglige udbytte af undervisningen, men faktisk også kommunikationen mellem lærer og elev!
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="collapse" id="hvordan">
-                <div class="card card-body">
-                    <h4 style="text-align: left; color: #4a4e4d" class="maintit"><b>Hvordan?</b></h4>
-                    <hr>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                <div class="card">
+                    <div class="card-header" id="hvordan">
+                        <h5 class="mb-0">
+                            <button class="btn btn-dark collapsed" style="width: 100%;" type="button" data-toggle="collapse" data-target="#hvordan_card" aria-expanded="false" aria-controls="hvordan_card">
+                                Hvordan?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="hvordan_card" class="collapse" aria-labelledby="hvordan" data-parent="#accordion">
+                        <div class="card-body">
+                            Hvis lærerne ved at der er et problem, så kan de nemmere løse det i undervisningen eller direkte i samarbejde med en elev.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,24 +188,24 @@ include_once 'includes/functions.php';
     <!-- Landing 3 -->
 
     <div id="end">
-        <div class="container" id="end">
+        <div class="container" style="color: rgb(235,235,235);" id="end">
             <div class="row">
                 <div class="col-3">
                     <p><b>Kontakt</b></p>
                     <div class="row">
-                        <div class="col-2" id="tlf1">
-                            <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-telephone-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z" />
-                            </svg>
 
-                            <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
-                            </svg>
-                        </div>
-                        <div class="col-10">
-                            <p id="tlf2">99 99 99 99 <br>desejebois@gmail.com</p>
+                        <ul class="pagination">
+                            <li style="margin-left: 15px;" class="page-item"><i class="far fa-envelope"></i></li>
+                            <li style="margin-left: 15px;" class="page-item">information@testverktoj.dk</a></li>
+                        </ul>
 
-                        </div>
+                        
+                        <ul class="pagination">
+                            
+                            <li style="margin-left: 15px;" class="page-item"><i class="fas fa-phone-alt"></i></li>
+                            <li style="margin-left: 15px;" class="page-item">99 99 99 99</a></li>
+                        </ul>
+
 
                     </div>
                 </div>
@@ -213,7 +223,7 @@ include_once 'includes/functions.php';
                 <div class="col-3">
                     <p><b>Genjeve</b></p>
                     <p>NYHEDER</p>
-                    <p>OM HELVEDE</p>
+                    <p>OM TESTVERKTOJ</p>
                 </div>
             </div>
             <hr>
