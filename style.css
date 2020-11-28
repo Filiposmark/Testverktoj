@@ -93,6 +93,7 @@ td > .badge {
     float: right;
     position: relative;     /* Top, bottom, left, right specifies "offset" relative to original position */
     top: -50px;
+    margin-left: 20px;
 }
 
 @media (max-width: 1100px) {

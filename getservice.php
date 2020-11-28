@@ -92,7 +92,7 @@ if (!isset($_GET["action"])) {
     else if ($action == "loadTests") {
         $actionNoMatch = false;
 
-        $sql = "SELECT t.date_available, t.date_closed, t.title, c.name as class_name, teacher.name as teacher_name, top.title as topic
+        $sql = "SELECT t.id, t.date_available, t.date_closed, t.title, c.name as class_name, teacher.name as teacher_name, top.title as topic
                 FROM tests t
                 INNER JOIN users teacher on t.teacher_id = teacher.id
                 INNER JOIN topics top on t.topic = top.id

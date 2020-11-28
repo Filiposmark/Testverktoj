@@ -63,7 +63,7 @@ sec_session_start();
                             <td>{{test.title}}</td>
                             <td>{{test.teacher_name}}</td>
                             <td>{{test.date_closed_string}}</td>
-                            <td><div class="btn btn-success">Start test</div></td>
+                            <td><a href="test.php?id={{test.id}}" class="btn btn-success">Start test</a></td>
                         </tr>
                         </tbody>
                     </table>
